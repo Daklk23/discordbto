@@ -1,0 +1,356 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: #3b4351; /* Main background matching Pterodactyl */
+    color: #cbd5e1;
+}
+
+/* Top Navigation */
+.top-nav {
+    background-color: #272d38;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    border-bottom: 2px solid #1abc9c; /* Top line accent */
+}
+
+.top-nav .nav-left h2 {
+    color: #f1f5f9;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.top-nav .nav-right {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-icon {
+    color: #94a3b8;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: color 0.2s;
+}
+
+.nav-icon:hover, .nav-icon.active {
+    color: #f1f5f9;
+}
+
+.nav-icon.active {
+    border-bottom: 2px solid #1abc9c;
+    padding-bottom: 18px; /* Align border with nav bottom */
+}
+
+.text-yellow {
+    color: #facc15 !important;
+}
+
+/* Main Container */
+.container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.header-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 0.8rem;
+    color: #94a3b8;
+    font-weight: 600;
+}
+
+.toggle-switch {
+    width: 36px;
+    height: 18px;
+    background-color: #cbd5e1;
+    border-radius: 9px;
+    margin-left: 10px;
+    position: relative;
+    cursor: pointer;
+}
+
+.toggle-switch::after {
+    content: '';
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background-color: white;
+    border-radius: 50%;
+    top: 2px;
+    left: 20px; /* On position */
+}
+
+/* Tabs */
+.tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.tab-btn {
+    background-color: #272d38;
+    color: #94a3b8;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.tab-btn:hover {
+    background-color: #3b4351;
+    color: #f1f5f9;
+}
+
+.tab-btn.active {
+    background-color: #4a5568;
+    color: #f1f5f9;
+    border-left: 3px solid #1abc9c;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Cards */
+.card {
+    background-color: #444c5b;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    background-color: #4a5464;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    border-left: 3px solid #facc15; /* Yellow accent like the server status */
+}
+
+.card-header .icon {
+    background-color: #5b677a;
+    padding: 10px;
+    border-radius: 4px;
+    color: #f1f5f9;
+    margin-right: 15px;
+}
+
+.card-header .title {
+    color: #f1f5f9;
+    font-weight: 600;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+/* Forms */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #94a3b8;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.form-group input, .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    background-color: #3b4351;
+    border: 1px solid #272d38;
+    color: #f1f5f9;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.form-group input:focus, .form-group textarea:focus {
+    outline: none;
+    border-color: #1abc9c;
+}
+
+.btn-primary {
+    background-color: #1abc9c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+    background-color: #16a085;
+}
+
+/* Tables */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-table th, .data-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #3b4351;
+}
+
+.data-table th {
+    color: #94a3b8;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.data-table td {
+    color: #f1f5f9;
+    font-size: 0.9rem;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    color: #64748b;
+    font-size: 0.8rem;
+    margin-top: 40px;
+}
+
+/* Discord Embed Preview */
+.ticket-config-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.preview-container {
+    background-color: #3b4351;
+    border-radius: 4px;
+    padding: 15px;
+    border: 1px solid #272d38;
+}
+
+.preview-title {
+    color: #94a3b8;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #272d38;
+    padding-bottom: 10px;
+}
+
+.discord-message {
+    display: flex;
+    font-family: 'Inter', sans-serif;
+    color: #dcddde;
+    background-color: #313338;
+    padding: 15px;
+    border-radius: 4px;
+}
+
+.discord-avatar {
+    margin-right: 15px;
+}
+
+.discord-avatar img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.discord-message-content {
+    flex: 1;
+}
+
+.discord-author {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #f2f3f5;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+}
+
+.bot-tag {
+    background-color: #5865F2;
+    color: white;
+    font-size: 0.65rem;
+    padding: 2px 4px;
+    border-radius: 3px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.discord-timestamp {
+    font-size: 0.75rem;
+    color: #949ba4;
+    font-weight: 400;
+}
+
+.discord-embed {
+    display: flex;
+    background-color: #2b2d31;
+    border-radius: 4px;
+    margin-top: 5px;
+    overflow: hidden;
+    max-width: 400px;
+}
+
+.discord-embed-color {
+    width: 4px;
+    background-color: #0099ff;
+    flex-shrink: 0;
+}
+
+.discord-embed-inner {
+    padding: 12px 16px;
+    flex: 1;
+}
+
+.discord-embed-description {
+    font-size: 0.875rem;
+    line-height: 1.375rem;
+    white-space: pre-wrap;
+    color: #dbdee1;
+}
+
+.discord-components {
+    margin-top: 10px;
+}
+
+.discord-button {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 3px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: default;
+    user-select: none;
+    color: white;
+}
+
+.discord-button.danger {
+    background-color: #da373c;
+}
+

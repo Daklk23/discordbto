@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pterodactyl - Bot Dashboard</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+        <div class="nav-left">
+            <h2>Pterodactyl</h2>
+        </div>
+        <div class="nav-right">
+            <i class="fas fa-search nav-icon"></i>
+            <i class="fas fa-server nav-icon active"></i>
+            <i class="fas fa-cogs nav-icon"></i>
+            <i class="fas fa-user-circle nav-icon text-yellow"></i>
+            <i class="fas fa-sign-out-alt nav-icon"></i>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        
+        <div class="header-actions">
+            <span>SHOWING YOUR SETTINGS</span>
+            <div class="toggle-switch"></div>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('tickets')"><i class="fas fa-ticket-alt"></i> Ticket Config</button>
+            <button class="tab-btn" onclick="switchTab('logs')"><i class="fas fa-list-alt"></i> Action Logs</button>
+            <button class="tab-btn" onclick="switchTab('infractions')"><i class="fas fa-ban"></i> Warnings & Bans</button>
+        </div>
+
+        <!-- Ticket Config Tab -->
+        <div id="tickets-tab" class="tab-content active">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-server icon"></i> 
+                    <span class="title">Ticket System Configuration</span>
+                </div>
+                <div class="card-body">
+                    <div class="ticket-config-layout">
+                        <form id="config-form">
+                            <div class="form-group">
+                                <label>Ticket Category ID</label>
+                                <input type="text" id="ticketCategory" name="ticketCategory" placeholder="e.g. 1234567890">
+                            </div>
+                            <div class="form-group">
+                                <label>Support Role ID</label>
+                                <input type="text" id="ticketSupportRole" name="ticketSupportRole" placeholder="e.g. 1234567890">
+                            </div>
+                            <div class="form-group">
+                                <label>Ticket Panel Channel ID</label>
+                                <input type="text" id="ticketPanelChannel" name="ticketPanelChannel" placeholder="Channel to spawn the ticket button">
+                            </div>
+                            <div class="form-group">
+                                <label>Log Channel ID</label>
+                                <input type="text" id="logChannel" name="logChannel" placeholder="Channel for anti-invite logs">
+                            </div>
+                            <div class="form-group">
+                                <label>Embed Color (Hex)</label>
+                                <input type="text" id="ticketEmbedColor" name="ticketEmbedColor" placeholder="e.g. #0099ff">
+                            </div>
+                            <div class="form-group">
+                                <label>Welcome Message</label>
+                                <textarea id="ticketWelcomeMessage" name="ticketWelcomeMessage" rows="3"></textarea>
+                            </div>
+                            <button type="submit" class="btn-primary">Save Settings</button>
+                        </form>
+
+                        <div class="preview-container">
+                            <div class="preview-title">Live Embed Preview</div>
+                            <div class="discord-message">
+                                <div class="discord-avatar"><img src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Bot Avatar"></div>
+                                <div class="discord-message-content">
+                                    <div class="discord-author">CaptionsBot <span class="bot-tag">BOT</span> <span class="discord-timestamp">Today at 12:00 PM</span></div>
+                                    <div class="discord-embed" id="preview-embed">
+                                        <div class="discord-embed-color" id="preview-color"></div>
+                                        <div class="discord-embed-inner">
+                                            <div class="discord-embed-description" id="preview-description">Welcome to your ticket! Please wait for a staff member.</div>
+                                        </div>
+                                    </div>
+                                    <div class="discord-components">
+                                        <div class="discord-button danger">Close Ticket</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Logs Tab -->
+        <div id="logs-tab" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-terminal icon"></i> 
+                    <span class="title">System Logs</span>
+                </div>
+                <div class="card-body">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>Action</th>
+                                <th>Details</th>
+                            </tr>
+                        </thead>
+                        <tbody id="logs-table-body">
+                            <!-- Logs will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Infractions Tab -->
+        <div id="infractions-tab" class="tab-content">
+            <div class="card" style="margin-bottom: 20px;">
+                <div class="card-header">
+                    <i class="fas fa-exclamation-triangle icon"></i> 
+                    <span class="title">Warnings</span>
+                </div>
+                <div class="card-body">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>User ID</th>
+                                <th>Warning Count</th>
+                            </tr>
+                        </thead>
+                        <tbody id="warnings-table-body">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <i class="fas fa-gavel icon"></i> 
+                    <span class="title">Bans</span>
+                </div>
+                <div class="card-body">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>User ID</th>
+                                <th>Reason</th>
+                                <th>Banned By</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bans-table-body">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            Pterodactyl® © 2015 - 2026
+        </div>
+    </div>
+
+    <script src="/js/app.js"></script>
+</body>
+</html>
